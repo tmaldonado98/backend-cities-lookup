@@ -13,7 +13,7 @@ $updateQuery =
     list_array, 
     '$.$new_list_name', 
     JSON_ARRAY(
-      JSON_OBJECT('city', ' ', 'country', ' ')
+      -- JSON_OBJECT('city', ' ', 'country', ' ')
     )
   ) WHERE user_email = ?;";
 
