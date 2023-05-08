@@ -13,9 +13,10 @@ $addPlace =
 "UPDATE user_lists SET list_array =
     JSON_ARRAY_APPEND(
         list_array,
-        '$.$toList',
-        -- JSON_EXTRACT(list_array, '$.$toList'), 
-        JSON_OBJECT('city', '$city', 'country', '$country')
+        -- '$.$toList',
+        JSON_ARRAY(
+            JSON_OBJECT('city', '$city', 'country', '$country')
+        )
   ) WHERE user_email = '$user_email'";
 
 // JSON_SET(

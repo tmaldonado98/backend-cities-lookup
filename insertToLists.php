@@ -9,16 +9,14 @@ $user_email = $data['userEmail'];
 
 ///This query just creates a new list with the name provided by the user.
 $updateQuery = 
-"UPDATE user_lists SET list_array = JSON_SET(
-    list_array, 
-    '$.$new_list_name', 
-    JSON_ARRAY(
-      -- JSON_OBJECT('city', ' ', 'country', ' ')
-    )
-  ) WHERE user_email = ?;";
+"UPDATE user_lists SET list_array = JSON_ARRAY(
+  JSON_OBJECT('list_name', '$new_list_name')
+  ) 
+WHERE user_email = ?";
 
-// "UPDATE user_lists SET list_array = JSON_MERGE_PATCH(list_array, JSON_OBJECT('lists', JSON_ARRAY_APPEND(JSON_EXTRACT(list_array, '$.lists'), '$', $new_list_name))) WHERE user_email = ?;";
+// "INSERT INTO user_lists (list_array) VALUES (?) WHERE user_email = ?";
 
+// $arrayToInsert = json_encode(array('list_name' => $new_list_name));
 
 $stmt = $conn -> prepare($updateQuery);
 $stmt -> bind_param("s", $user_email);
