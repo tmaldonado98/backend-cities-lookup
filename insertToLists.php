@@ -9,8 +9,11 @@ $user_email = $data['userEmail'];
 
 ///This query just creates a new list with the name provided by the user.
 $updateQuery = 
-"UPDATE user_lists SET list_array = JSON_ARRAY(
+"UPDATE user_lists SET list_array = JSON_ARRAY_APPEND(
+  list_array,
+  '$',
   JSON_OBJECT('list_name', '$new_list_name')
+  
   ) 
 WHERE user_email = ?";
 

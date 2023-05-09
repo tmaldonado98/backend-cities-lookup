@@ -7,21 +7,22 @@ $city = $data['city'];
 $country = $data['country'];
 $user_email = $data['userEmail'];
 $toList = $data['toList'];
+$index = $data['index'];
 
 ///query to insert place to specific list
+// [$toList]
 $addPlace = 
 "UPDATE user_lists SET list_array =
-    JSON_ARRAY_APPEND(
+    JSON_SET(
         list_array,
-        -- '$.$toList',
-        JSON_ARRAY(
+        '$[$index]',
+        JSON_MERGE_PRESERVE(
+            -- list_array -> '$[$index]',
+            JSON_EXTRACT(list_array, '$[$index]'),
             JSON_OBJECT('city', '$city', 'country', '$country')
         )
   ) WHERE user_email = '$user_email'";
 
-// JSON_SET(
-//     list_array, 
-//     '$.$toList', 
 
 $prepareAdd = $conn -> prepare($addPlace);
 
@@ -34,6 +35,6 @@ if($prepareAdd -> execute()){
     echo 'false';
 }
 
-// echo $country . $city . $user_email . $toList;
+// echo $country . $city . $user_email . $toList[0] . $index;
 
 ?>
