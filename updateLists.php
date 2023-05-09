@@ -19,7 +19,11 @@ $addPlace =
         JSON_MERGE_PRESERVE(
             -- list_array -> '$[$index]',
             JSON_EXTRACT(list_array, '$[$index]'),
-            JSON_OBJECT('city', '$city', 'country', '$country')
+            JSON_OBJECT(
+                'place', JSON_ARRAY(
+                    JSON_OBJECT('city', '$city', 'country', '$country')
+                    )
+                )
         )
   ) WHERE user_email = '$user_email'";
 
