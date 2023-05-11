@@ -34,10 +34,12 @@ $prepareAdd = $conn -> prepare($addPlace);
 
 if($prepareAdd -> execute()){
     header('Content-Type: application/json');
-    echo 'Successfully added ' . $city . ', ' . $country . ' to the list: '. $toList;
+    echo 'true';
 } else {
     echo 'false';
 }
+
+// echo 'Successfully added ' . $city . ', ' . $country . ' to the list: '. $toList;
 
 // echo $country . $city . $user_email . $toList[0] . $index;
 

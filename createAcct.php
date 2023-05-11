@@ -23,7 +23,7 @@ $result = $stmt->get_result();
 
 ///Now create row for user in the user_lists table
 
-$insertQuery = "INSERT INTO user_lists (list_name, user_email) VALUES (?, ?);";
+$insertQuery = "INSERT INTO user_lists (list_array, user_email) VALUES (?, ?);";
 
 $emptyList = json_encode(array());
 
