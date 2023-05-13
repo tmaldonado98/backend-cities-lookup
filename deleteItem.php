@@ -27,6 +27,6 @@ if($preparedStatement -> execute()){
     echo 'false';
 };
 
-// echo json_encode($list_index . $item_index);
+echo json_encode($list_index . $item_index);
  
 ?>
