@@ -1,5 +1,11 @@
 <?php
 require "connect.php";
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+
 $credentials = json_decode(file_get_contents("php://input"), true);
 
     $email = $credentials['email'];
